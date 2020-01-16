@@ -1,0 +1,102 @@
+<app-header></app-header>
+<div class="page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12">
+                <h1 class="heading-title">Funds List</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12">
+            <div class="main-content">
+                <div class="fund-types-table">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr class="light-blue-bg white-text">
+                                <th>Fund Name</th>
+                                <th>Description</th>
+                                <th class="text-center">Status</th>
+                                <th class="text-center">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let fund of funds | paginate: { id: 'fundtypes', itemsPerPage: perPage, currentPage: page, totalItems: total }">
+                                <td>{{ fund.name }}</td>
+                                <td><span tooltip="{{ fund.description }}">{{ fund.short_desc }}</span></td>
+                                <td class="text-center">
+                                    <span class="badge badge-success" *ngIf="fund.status == 1">Active</span>
+                                    <span class="badge badge-danger" *ngIf="fund.status != 1">Inactive</span>
+                                </td>
+                                <td class="text-center">
+                                    <button class="btn btn-secondary badge" type="button" (click)="fundEdit( $event, fund, template )">Edit Details</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="pagination-wrapper" *ngIf="funds">
+                        <pagination-template id="fundtypes" #p="paginationApi" (pageChange)="getPage($event)">
+                            <ul class="pagination justify-content-center">
+                                <li class="pagination-prev page-item" [class.disabled]="p.isFirstPage()">
+                                    <a class="page-link" (click)="p.previous()" tabindex="p.getCurrent() - 1">Previous</a>
+                                </li>
+                                <li *ngFor="let page of p.pages" class="pagination-page page-item" [class.active]="p.getCurrent() === page.value">
+                                    <a class="page-link" (click)="p.setCurrent(page.value)" *ngIf="p.getCurrent() !== page.value" tabindex="page.label">
+                                        <span>{{ page.label }}</span>
+                                    </a>
+                                    <span class="page-link" *ngIf="p.getCurrent() === page.value">
+                                        <span>{{ page.label }}</span>
+                                    </span>
+                                </li>
+                                <li class="pagination-next page-item" [class.disabled]="p.isLastPage()">
+                                    <a class="page-link" (click)="p.next()" tabindex="p.getCurrent() + 1">Next</a>
+                                </li>
+                            </ul>
+                        </pagination-template>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #template>
+
+    <!-- Modal Header -->
+    <div class="modal-header">
+        <h5 class="modal-title">Edit Fund</h5>
+        <button type="button" class="close" (click)="modalRef.hide()">&times;</button>
+    </div>
+
+    <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+        <!-- Modal body -->
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12">
+                    <div class="form-group">
+                        <label for="description" class="font-weight-bold">Fund Name</label>
+                        <input type="text" formControlName="name" class="form-control" readonly="readonly" />
+                    </div>
+                    <div class="form-group">
+                        <label for="description" class="font-weight-bold">Description</label>
+                        <textarea formControlName="description" class="form-control" rows="5"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" value="1" class="custom-control-input" id="status" formControlName="status">
+                            <label class="custom-control-label" for="status">Enable/Disable</label>
+                        </div>
+                    </div>
+                    <div *ngIf="error" class="alert alert-danger mb-0">{{ error }}</div>
+                    <div *ngIf="success" class="alert alert-success mb-0">Fund updated successfully.</div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button [disabled]="submitted || loading" class="btn btn-success" type="submit">Update</button>
+        </div>
+    </form>
+</ng-template>

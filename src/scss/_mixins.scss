@@ -1,0 +1,21 @@
+//Mixins
+
+@mixin generate-bg-color($colors) {
+
+  @each $key,
+  $color in $colors {
+    .#{$key + "-bg"} {
+      background-color: $color !important;
+    }
+  }
+}
+
+@mixin generate-text-color($colors) {
+
+  @each $key,
+  $color in $colors {
+    .#{$key + "-text"} {
+      color: $color !important;
+    }
+  }
+}

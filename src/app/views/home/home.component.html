@@ -1,0 +1,46 @@
+<div id="content">
+    <div class="page-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12">
+                    <h1 class="heading-title" style="text-transform: capitalize;">Investment-Linked Funds</h1>
+                    <p class="heading-tagline">Get the latest updates on fund pricing.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="main-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12">
+                    <div class="daily-funds-section">
+                        <table class="table table-bordered table-condensed text-center">
+                            <thead>
+                                <tr class="blue-bg white-text">
+                                    <th colspan="3">Investment-Linked Fund Unit Price (MYR) as at {{ data.date }}</th>
+                                </tr>
+                                <tr class="light-blue-bg white-text">
+                                    <th class="text-left">Fund Name</th>
+                                    <th>Unit Price (MYR) </th>
+                                    <th>Historical</th>
+                                </tr>
+                            </thead>
+                            <tbody *ngIf="data.funds && data.funds.length">
+                                <tr *ngFor="let fund of data.funds">
+                                    <td class="text-left">{{ fund.name }}</td>
+                                    <td>{{ fund.price }}</td>
+                                    <td><a [routerLink]="['/details', fund.id ]">View Details</a></td>
+                                </tr>
+                            </tbody>
+                            <tbody *ngIf="!data.funds">
+                                <tr>
+                                    <td colspan="3">No Record available at the moment</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

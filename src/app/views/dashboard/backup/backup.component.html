@@ -1,0 +1,77 @@
+<app-header></app-header>
+<div class="page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12">
+                <h1 class="heading-title">Daily Funds Backup List</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12">
+            <div class="main-content">
+                <div class="daily-funds-table">
+
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr class="light-blue-bg white-text text-center">
+                                <th class="text-left">Fund Name</th>
+                                <th>Price</th>
+                                <th>As At</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let fund of funds | paginate: { id: 'dailyfunds', itemsPerPage: perPage.value, currentPage: page, totalItems: total }; let i = index; let f = first">
+                                <td>{{ fund.name }}</td>
+                                <td class="text-center">{{ fund.price }}</td>
+                                <td class="text-center">{{ fund.as_at }}</td>
+                                <td class="text-center">
+                                    <span class="badge badge-success" *ngIf="fund.status == 1">Approved</span>
+                                    <span class="badge badge-danger" *ngIf="fund.status != 1">Unpproved</span>
+                                </td>
+                            </tr>
+                            <tr *ngIf="funds && !funds.length && !loading">
+                                <td colspan="4">No records found.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="pagination-wrapper" *ngIf="funds && funds.length">
+                        <div class="float-left">
+                            <select class="form-control show-per-page" [formControl]="perPage">
+                                <option value="15">15</option>
+                                <option value="30">30</option>
+                                <option value="50">50</option>
+                                <option value="100">100</option>
+                                <option value="100">200</option>
+                            </select>
+                        </div>
+                        <div class="float-right">
+                            <pagination-template maxSize="7" id="dailyfunds" #p="paginationApi" (pageChange)="getPage($event)">
+                                <ul class="pagination justify-content-end">
+                                    <li class="pagination-prev page-item" [class.disabled]="p.isFirstPage()">
+                                        <a class="page-link" (click)="p.previous()" tabindex="p.getCurrent() - 1">&larr;</a>
+                                    </li>
+                                    <li *ngFor="let page of p.pages" class="pagination-page page-item" [class.active]="p.getCurrent() === page.value">
+                                        <a class="page-link" (click)="p.setCurrent(page.value)" *ngIf="p.getCurrent() !== page.value" tabindex="page.label">
+                                            <span>{{ page.label }}</span>
+                                        </a>
+                                        <span class="page-link" *ngIf="p.getCurrent() === page.value">
+                                            <span>{{ page.label }}</span>
+                                        </span>
+                                    </li>
+                                    <li class="pagination-next page-item" [class.disabled]="p.isLastPage()">
+                                        <a class="page-link" (click)="p.next()" tabindex="p.getCurrent() + 1">&rarr;</a>
+                                    </li>
+                                </ul>
+                            </pagination-template>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

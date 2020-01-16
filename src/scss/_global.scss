@@ -1,0 +1,219 @@
+// Global Scss
+body {
+  background: $body-bg-color;
+  color: $body-text-color;
+  line-height: $body-line-height;
+  margin: 0;
+  padding: 0;
+  font-family: $text-font-family;
+}
+
+a,
+a:hover,
+a:active,
+a:focus {
+  text-decoration: none;
+}
+
+a {
+  color: $blue;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: $heading-font-family;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+}
+
+.table th,
+.table td {
+  padding: 0.45rem;
+}
+
+.btn {
+  outline: 0 !important;
+  box-shadow: none !important;
+  text-align: center;
+}
+
+a.btn {
+  cursor: pointer;
+}
+
+span.required {
+  color: #dc3545;
+}
+
+.main-nav {
+  background: $blue;
+  color: $white;
+}
+
+.main-nav a {
+  color: $white;
+}
+
+.btn-primary,
+.btn-primary:not([href]):not([tabindex]),
+.btn-primary.disabled,
+.btn-primary:disabled {
+  color: $white;
+  background-color: $light-blue;
+  border-color: $light-blue;
+}
+
+.btn-primary.disabled,
+.btn-primary:disabled {
+  cursor: not-allowed;
+}
+
+.btn-primary:not([href]):not([tabindex]):hover,
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary:focus:active {
+  color: $white;
+  background-color: $blue;
+  border-color: $blue;
+}
+
+.form-control {
+  box-shadow: none !important;
+  outline: 0 !important;
+}
+
+.datepicker-form-control {
+  background-color: transparent !important;
+  cursor: pointer;
+}
+
+.datepicker-container-wrap {
+  box-shadow: 0 0 2px 0 rgba(170, 170, 170, 0.6);
+}
+
+.datepicker-container-wrap .bs-datepicker-container {
+  padding: 0;
+}
+
+.form-group {
+  position: relative;
+}
+
+.form-group>label {
+  margin-bottom: 3px;
+}
+
+.page-header {
+  text-align: center;
+  background: $gray;
+  padding: 60px 0;
+}
+
+.page-header .heading-title {
+  line-height: 1.4;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  word-break: break-word;
+}
+
+.page-header .heading-tagline {
+  margin: 0;
+}
+
+.main-content {
+  padding: 35px 0 20px;
+}
+
+.funds-filters label {
+  margin-bottom: 3px;
+}
+
+.pagination a.page-link {
+  cursor: pointer;
+}
+
+.pagination .page-link {
+  color: $blue;
+}
+
+.pagination .page-item.active .page-link {
+  background: $light-blue;
+  color: $white;
+}
+
+.show-per-page {
+  width: 55px;
+  padding: 0.375rem 0.3rem;
+  padding-right: 0;
+  margin-bottom: 15px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn-xs,
+.btn-group-xs>.btn {
+  padding: 0.05rem 0.6rem;
+  line-height: 1.5;
+  border-radius: 0.2rem;
+}
+
+.alert-danger {
+  overflow: hidden;
+  margin: 4px 0px;
+  border-radius: 2px;
+  position: relative;
+  border: 1px solid #e25353;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px;
+  background-color: #ff8181;
+  color: white;
+  min-height: 50px;
+}
+
+.alert-success {
+  overflow: hidden;
+  margin: 4px 0px;
+  border-radius: 2px;
+  position: relative;
+  border: 1px solid #55bd50;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px;
+  background-color: #7cdd77;
+  color: white;
+  min-height: 50px;
+}
+
+.btn-danger {
+  color: #fff;
+  background-color: #ff8181;
+  border-color: #ff8181;
+}
+
+.btn-danger:hover {
+  color: #fff;
+  background-color: darken(#ff8181, 5);
+  border-color: darken(#ff8181, 5);
+}
+
+.btn-success {
+  color: #fff;
+  background-color: #7cdd77;
+  border-color: #7cdd77;
+}
+
+.btn-success:hover {
+  color: #fff;
+  background-color: darken(#7cdd77, 10);
+  border-color: darken(#7cdd77, 10);
+}
+
+.badge-danger {
+  color: #fff;
+  background-color: #ff8181;
+}
+
+.badge-success {
+  color: #fff;
+  background-color: #7cdd77;
+}

@@ -1,0 +1,18 @@
+<nav class="main-nav pt-1 pb-2">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-sm-12">
+                <div class="float-right">
+                    <ul class="list-inline mb-0">
+                        <li class="list-inline-item"><a href="/" target="_blank">Home</a></li>
+                        <li class="list-inline-item">|</li>
+                        <li class="list-inline-item"><a [routerLink]="['/dashboard']">Dashboard</a></li>
+                        <li class="list-inline-item">|</li>
+                        <li class="list-inline-item"><a href="#" (click)="logout($event)">Logout</a></li>
+                    </ul>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</nav>

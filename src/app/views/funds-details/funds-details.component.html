@@ -1,0 +1,72 @@
+<div id="content">
+    <div class="page-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12">
+                    <h1 class="heading-title" style="text-transform: capitalize;">Investment-Linked Funds Historical Pricing</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="main-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12">
+                    <div class="funds-details-section">
+                        <div class="row">
+                            <div class="funds-dropdown col-xs-12 col-sm-11 col-md-6 mx-sm-auto mb-3">
+                                <div class="form-group row">
+                                    <label for="select-fund" class="col-sm-3 col-md-4 col-form-label text-sm-right">Select a fund</label>
+                                    <div class="col-sm-9 col-md-8" style="float:right;">
+                                        <select class="form-control" (change)="onFundDropDownChange($event.target.value)">
+                                            <option *ngFor="let fund of funds" value="{{ fund.id }}" [selected]="fund.id == fundID">{{ fund.name }}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="fund-details">
+                            <h2 class="fund-name text-center mb-2" style="text-transform: capitalize;">{{ fundDetails.name }}</h2>
+                            <p class="fund-description">{{ fundDetails.description }}</p>
+                            <div class="fund-meta">
+                                <p class="fund-daily-price"><b> Unit Price (MYR) : {{ fundDetails.price }} </b></p>
+                                <p class="fund-current-date" *ngIf="fundDetails.as_at && fundDetails.as_at.length"><b>As at {{ fundDetails.as_at}}</b></p>
+                            </div>
+                            <div class="chart-wrapper mt-2 mb-5">
+                                <div [chart]="chart"></div>
+                            </div>
+                            <form [formGroup]="filterForm" (ngSubmit)="onFilterSubmit()">
+                                <div class="row">
+                                    <div class="funds-filters col-xs-12 col-sm-6 col-md-4 mx-sm-auto">
+                                        <div class="form-group">
+                                            <h4 class="text-center text-capitalize">Select Period</h4>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="from" class="col-sm-2 col-form-label">From</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" formControlName="from" class="form-control datepicker-form-control" value="" autoload="false" readonly="true" autocomplete="false" placeholder="e.g. 05 Aug 2019" bsDatepicker [bsConfig]="datepickerConfig" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="to" class="col-sm-2 col-form-label">To</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" formControlName="to" class="form-control datepicker-form-control" value="" autoload="false" readonly="true" autocomplete="false" placeholder="e.g. 12 Dec 2019" bsDatepicker [bsConfig]="datepickerConfig" />
+                                                <div style="display: block;" *ngIf="error" class="invalid-feedback">{{ error }}</div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group text-center">
+                                            <button class="btn btn-primary" type="submit" [disabled]="!formValid || loading || submitted">
+                                                <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                                                Update
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,22 @@
+// If you want to override variables do it here
+@import "variables";
+
+// Import boostrap
+@import "~bootstrap/dist/css/bootstrap.css";
+
+// Import Fontawesome
+//@import "~font-awesome/css/font-awesome.css";
+
+//Import Ionicons
+@import "~ionicons/dist/css/ionicons.min.css";
+
+// Import mixins
+@import "mixins";
+
+//Import styles
+@import "global";
+@import "helpers";
+@import "dashboard";
+
+// If you want to add something do it here
+@import "custom";

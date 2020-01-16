@@ -1,0 +1,24 @@
+// Variable overrides
+
+$heading-font-family: "Oswald", sans-serif;
+$text-font-family: "Muli", sans-serif;
+
+$body-bg-color: #fff;
+$body-text-color: #333333;
+$body-line-height: 1.5;
+
+$gray: #f2f2f2;
+$blue: #0061a0;
+$light-blue: #007abc;
+$white: #fff;
+
+$colors: ();
+$colors: map-merge(
+  (
+    "blue": $blue,
+    "light-blue": $light-blue,
+    "white": $white,
+    "gray": $gray
+  ),
+  $colors
+);

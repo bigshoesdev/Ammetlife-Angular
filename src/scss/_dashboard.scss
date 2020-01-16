@@ -1,0 +1,259 @@
+// Dashboard
+
+
+/*Color Variables*/
+$bc: $blue;
+$heding: #405867;
+$pfont: #5f6771;
+
+// Mixins
+@mixin transition($property: all, $duration: 300ms, $animate: linear, $delay:0s) {
+  transition: $property $duration $animate $delay;
+}
+
+// Placeholder Mixins
+@mixin placeholder {
+  &.placeholder {
+    @content;
+  }
+
+  &:-moz-placeholder {
+    @content;
+  }
+
+  &::-moz-placeholder {
+    @content;
+  }
+
+  &::-webkit-input-placeholder {
+    @content;
+  }
+}
+
+.multi_step_form {
+  border: 1px solid #DDD;
+  padding: 50px 0 60px;
+  display: block;
+  overflow: hidden;
+  border-radius: 0.25rem;
+  
+  #msform {
+    text-align: center;
+    position: relative;
+    min-height: 400px;
+    margin: 0 auto;
+    z-index: 1;
+
+    .title {
+      text-align: center;
+      padding-bottom: 10px;
+
+      h2 {
+        font: 500 24px/35px $text-font-family;
+        color: #3f4553;
+        padding-bottom: 5px;
+      }
+
+      p {
+        font: 400 16px/28px $text-font-family;
+        color: $pfont;
+      }
+    }
+
+    fieldset {
+      border: 0;
+      padding: 20px 30px 0;
+      position: relative;
+      width: 100%;
+      left: 0;
+      right: 0;
+
+      &:not(:first-of-type) {
+        display: none;
+      }
+
+      h3 {
+        font: 500 18px/35px $text-font-family;
+        color: #3f4553;
+      }
+
+      h6 {
+        font: 400 15px/28px $text-font-family;
+        color: $pfont;
+        padding-bottom: 30px;
+      }
+
+      .done_text {
+        padding-top: 40px;
+
+        .don_icon {
+          height: 36px;
+          width: 36px;
+          line-height: 36px;
+          font-size: 22px;
+          margin-bottom: 10px;
+          background: #5cb85c;
+          display: inline-block;
+          border-radius: 50%;
+          color: #ffffff;
+          text-align: center;
+        }
+
+        h6 {
+          line-height: 23px;
+        }
+      }
+
+      .custom-file {
+        width: 400px;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+        max-width: 100%;
+
+        .custom-file-input {
+          cursor: pointer;
+        }
+
+        .custom-file-label {
+          border-radius: 0.25rem;
+          border-color: #DDD;
+          text-align: left;
+          box-shadow: none !important;
+
+          &:after {
+            border-radius: 0;
+          }
+        }
+
+      }
+    }
+
+    #progressbar {
+      margin-bottom: 30px;
+      overflow: hidden;
+
+      li {
+        list-style-type: none;
+        color: #99a2a8;
+        font-size: 9px;
+        width: calc(100%/3);
+        float: left;
+        position: relative;
+        font: 500 13px/1 $text-font-family;
+
+        &:nth-child(2) {
+          &:before {
+            content: "\f33f";
+          }
+        }
+
+        &:nth-child(3) {
+          &:before {
+            content: "\f154";
+          }
+        }
+
+        &:before {
+          content: "\f2c8";
+          font: normal normal normal 30px/50px Ionicons;
+          width: 50px;
+          height: 50px;
+          line-height: 50px;
+          display: block;
+          background: #eaf0f4;
+          border-radius: 50%;
+          margin: 0 auto 10px auto;
+        }
+
+        &:after {
+          content: '';
+          width: 100%;
+          height: 10px;
+          background: #eaf0f4;
+          position: absolute;
+          left: -50%;
+          top: 21px;
+          z-index: -1;
+        }
+
+        &:last-child {
+          &:after {
+            width: 150%;
+          }
+        }
+
+        &.active {
+          color: $bc;
+
+          &:before,
+          &:after {
+            background: $bc;
+            color: white;
+          }
+        }
+      }
+    }
+
+    .action-button {
+      background: $bc;
+      color: white;
+      border: 0 none;
+      border-radius: 0.25rem;
+      cursor: pointer;
+      border: 1px solid $bc;
+      margin: 0 5px;
+      text-transform: uppercase;
+      display: inline-block;
+      min-width: 180px;
+      text-align: center;
+      padding: 0.375rem 0.75rem;
+      font-size: 1rem;
+      line-height: 1.5;
+
+      &:hover,
+      &:focus {
+        background: $heding;
+        border-color: $heding;
+      }
+
+      &:disabled,
+      .disabled {
+        opacity: 0.65;
+      }
+    }
+
+    .previous_button {
+      background: transparent;
+      color: #99a2a8;
+      border-color: #99a2a8;
+
+      &:hover,
+      &:focus {
+        background: $heding;
+        border-color: $heding;
+        color: #fff;
+      }
+    }
+  }
+}
+
+.menu-card {
+  display: block;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.menu-card img {
+  display: block;
+  width: 60px;
+  margin: 0 auto;
+  max-width: 100%;
+}
+
+.menu-card span {
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin: 10px 0;
+}

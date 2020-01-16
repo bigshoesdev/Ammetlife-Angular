@@ -1,0 +1,79 @@
+<app-header></app-header>
+<div class="page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12">
+                <h1 class="heading-title">Upload Funds List</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container my-5">
+    <!-- Multi step form -->
+    <section class="multi_step_form">
+        <div id="msform">
+            <!-- Tittle -->
+            <div class="title">
+                <h2>Fund Upload Process</h2>
+                <p>In order to use this service, you have to complete this verification process</p>
+            </div>
+            <!-- progressbar -->
+            <ul id="progressbar">
+                <li [ngClass]="{active:step >= 1}">Upload Document</li>
+                <li [ngClass]="{active:step >= 2}">Verify Details</li>
+                <li [ngClass]="{active:step ==3}">Complete Upload</li>
+            </ul>
+            <!-- fieldsets -->
+            <fieldset *ngIf="step == 1">
+                <h3>Upload Fund Sheet</h3>
+                <h6>Please upload your fund sheet file.</h6>
+                <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                    <div class="custom-file mb-3">
+                        <input type="file" class="custom-file-input" id="file" (change)="onFileChange($event)" #fileInput>
+                        <label class="custom-file-label" for="upload" [ngClass]="{selected:fileName}">{{ fileName }}</label>
+                    </div>
+                    <button type="submit" [disabled]="form.invalid || loading" class="next action-button">Submit File</button>
+                    <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+                </form>
+            </fieldset>
+            <fieldset *ngIf="step == 2">
+                <h3>Verify File Details</h3>
+                <h6>This is preview of rows that we are going to import into database. Please Verify and press continue.</h6>
+                <div class="daily-funds-section">
+                    <table class="table table-bordered table-condensed text-center">
+                        <thead>
+                            <tr class="light-blue-bg white-text">
+                                <th>Type of Funds</th>
+                                <th>Daily Price </th>
+                                <th>Historical</th>
+                            </tr>
+                        </thead>
+                        <tbody *ngIf="previewData.length">
+                            <tr *ngFor="let fund of previewData">
+                                <td>{{ fund.name }}</td>
+                                <td>{{ fund.price }}</td>
+                                <td>{{ fund.date }}</td>
+                            </tr>
+                        </tbody>
+                        <tbody *ngIf="!previewData.length">
+                            <tr>
+                                <td colspan="3">No Record available at the moment</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <button type="button" class="action-button previous_button" (click)="stepBack()">Back</button>
+                <button type="button" class="action-button" (click)="onSubmit()">Continue</button>
+                <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+            </fieldset>
+            <fieldset *ngIf="step == 3">
+                <div class="done_text">
+                    <a class="don_icon"><i class="ion-md-checkmark"></i></a>
+                    <h6>Your upload has been successfully done.</h6>
+                </div>
+                <a [routerLink]="['/dashboard']" class="action-button">Finish</a>
+            </fieldset>
+        </div>
+    </section>
+    <!-- End Multi step form -->
+</div>

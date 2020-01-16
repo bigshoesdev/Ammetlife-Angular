@@ -1,0 +1,69 @@
+<app-header></app-header>
+<div class="page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12">
+                <h1 class="heading-title">Edit Profile</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12">
+            <div class="main-content">
+                <h4>Edit Profile</h4>
+                <hr />
+                <div class="edit-profile-form">
+                    <form [formGroup]="editProfileForm" (ngSubmit)="onSubmit()">
+                        <div class="form-group">
+                            <label for="firstname">First Name <span class="required">*</span></label>
+                            <input type="text" class="form-control" formControlName="firstname" value="" [ngClass]="{ 'is-invalid': f.firstname.invalid && f.firstname.touched }" />
+                            <div *ngIf="f.firstname.invalid && f.firstname.touched" class="invalid-feedback">
+                                <div *ngIf="f.firstname.errors.required">First name is required</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastname">Last Name <span class="required">*</span></label>
+                            <input type="text" class="form-control" formControlName="lastname" value="" [ngClass]="{ 'is-invalid': f.lastname.invalid && f.lastname.touched }" />
+                            <div *ngIf="f.lastname.invalid && f.lastname.touched" class="invalid-feedback">
+                                <div *ngIf="f.lastname.errors.required">Last name is required</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address <span class="required">*</span></label>
+                            <input type="text" class="form-control" formControlName="email" value="" [ngClass]="{ 'is-invalid': f.email.invalid && f.email.touched }" />
+                            <div *ngIf="f.email.invalid && f.email.touched" class="invalid-feedback">
+                                <div *ngIf="f.email.errors.required">Email is required</div>
+                                <div *ngIf="f.email.errors.email">Please enter a valid email</div>
+                            </div>
+                        </div>
+                        <div class="alert alert-primary" role="alert">
+                            <strong>Important:</strong> Leave password blank if you don't want to change password.
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" class="form-control" formControlName="password" value="" [ngClass]="{ 'is-invalid': f.password.invalid && f.password.touched }" />
+                            <div *ngIf="f.password.invalid && f.password.touched" class="invalid-feedback">
+                                <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+                            </div>
+                        </div>
+                        <div class="form-group" *ngIf="f.password.valid && f.password.value != ''">
+                            <label for="confirmpassword">Confirm Password</label>
+                            <input type="password" class="form-control" formControlName="confirmpassword" value="" [ngClass]="{ 'is-invalid': f.confirmpassword.invalid && f.confirmpassword.touched }" />
+                            <div *ngIf="f.confirmpassword.invalid && f.confirmpassword.touched" class="invalid-feedback">
+                                <div *ngIf="f.confirmpassword.errors.confirmpassword">Passwords must match</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button [disabled]="editProfileForm.invalid" class="btn btn-primary" type="submit">Update Profile</button>
+                        </div>
+                        <div class="alert alert-success" *ngIf="success">
+                            <strong>Success:</strong> Profile updated successfully.
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
